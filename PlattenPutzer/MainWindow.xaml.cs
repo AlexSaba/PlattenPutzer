@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.IO.Packaging;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Environment;
 
 namespace PlattenPutzer
 {
@@ -24,8 +27,7 @@ namespace PlattenPutzer
 
         private void DeleteTempFiles(object sender, RoutedEventArgs e)
         {
-            var pathTemp = new DirectoryInfo(@"C:\Windows\Temp").EnumerateFiles();//
-            //.Where(f => File.ReadLines(f.FullName).ElementAtOrDefault(0)?.Contains(".lock") == false);
+            var pathTemp = new DirectoryInfo(@"C:\Windows\Temp").EnumerateFiles();
 
             foreach (FileInfo file in pathTemp)
             {
@@ -36,10 +38,35 @@ namespace PlattenPutzer
 
         public void DeleteSpotifyFiles(object sender, RoutedEventArgs e)
         {
-            //var pathSpot = new DirectoryInfo(@"C:\Windows\Temp").EnumerateFiles();
-            
-            var dername = System.IO.Path.GetRelativePath;
+            //Absoluter Pfad: C:\\Users\\%USERPROFILE%\\AppData\\Local\\Packages\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\\LocalCache\\Spotify\\Data
 
+            string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string spotifyPath = System.IO.Path.Combine(localAppData, "Packages", "SpotifyAB.SpotifyMusic_zpdnekdrzrea0", "LocalCache", "Spotify", "Data");
+
+            labelTemp.Content = spotifyPath;
+
+            if (Directory.Exists(spotifyPath))
+            {
+                foreach (string dir in Directory.GetDirectories(spotifyPath)) // Alle Unterordner durchgehen
+                {
+                    try
+                    {
+                        // Alle Dateien im Unterordner löschen
+                        foreach (string file in Directory.GetFiles(dir))
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fehler beim Löschen des Inhalts von {dir}: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Der Spotify-Ordner existiert nicht.");
+            }
         }
     }
 }
