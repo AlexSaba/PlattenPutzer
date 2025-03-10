@@ -33,5 +33,7 @@
             Click="DeleteSpotifyFiles" ClickMode="Press" Margin="10,10,10,10" IsEnabled="True">
             <TextBlock>Spotify-Müll<LineBreak/>löschen</TextBlock>
         </Button>
+        <Label Name="labelSpot" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
+        </Label>
     </Grid>
 </Window>

@@ -43,8 +43,6 @@ namespace PlattenPutzer
             string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string spotifyPath = System.IO.Path.Combine(localAppData, "Packages", "SpotifyAB.SpotifyMusic_zpdnekdrzrea0", "LocalCache", "Spotify", "Data");
 
-            labelTemp.Content = spotifyPath;
-
             if (Directory.Exists(spotifyPath))
             {
                 foreach (string dir in Directory.GetDirectories(spotifyPath)) // Alle Unterordner durchgehen
@@ -62,6 +60,7 @@ namespace PlattenPutzer
                         Console.WriteLine($"Fehler beim Löschen des Inhalts von {dir}: {ex.Message}");
                     }
                 }
+                labelSpot.Content = "Spotify-Müll entfernt!";
             }
             else
             {
