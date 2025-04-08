@@ -67,5 +67,34 @@ namespace PlattenPutzer
                 Console.WriteLine("Der Spotify-Ordner existiert nicht.");
             }
         }
+
+        private void DeleteMiniaturansichten(object sender, RoutedEventArgs e)
+        {
+            string LocalAppDataPath = "%LOCALAPPDATA%\\Microsoft";
+
+            if (Directory.Exists(LocalAppDataPath))
+            {
+                foreach (string dir in Directory.GetDirectories(LocalAppDataPath)) // Alle Unterordner durchgehen
+                {
+                    try
+                    {
+                        // Alle Dateien im Unterordner löschen
+                        foreach (string file in Directory.GetFiles(dir))
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fehler beim Löschen des Inhalts von {dir}: {ex.Message}");
+                    }
+                    labelMiniatur.Content = "Miniatur-Ansichten gelöscht!";
+                }
+            }
+            else
+            {
+                labelMiniatur.Content = "Keine Miniatur-Ansichten vorhanden.";
+            }
+        }
     }
 }

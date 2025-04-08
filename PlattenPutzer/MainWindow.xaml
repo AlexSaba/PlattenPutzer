@@ -35,5 +35,12 @@
         </Button>
         <Label Name="labelSpot" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
         </Label>
+        <Button Name="btn3" Grid.Column="1" Grid.Row="2" Background="Pink" 
+            BorderBrush="Black" BorderThickness="2" 
+            Click="DeleteMiniaturansichten" ClickMode="Press" Margin="10,10,10,10" IsEnabled="True">
+            <TextBlock>Miniaturansichten<LineBreak/>löschen</TextBlock>
+        </Button>
+        <Label Name="labelMiniatur" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
+        </Label>
     </Grid>
 </Window>
