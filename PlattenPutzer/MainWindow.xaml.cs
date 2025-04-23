@@ -70,7 +70,7 @@ namespace PlattenPutzer
 
         private void DeleteMiniaturansichten(object sender, RoutedEventArgs e)
         {
-            string LocalAppDataPath = "%LOCALAPPDATA%\\Microsoft";
+            string LocalAppDataPath = "%LOCALAPPDATA%\\Microsoft\\Windows\\Explorer";
 
             if (Directory.Exists(LocalAppDataPath))
             {
