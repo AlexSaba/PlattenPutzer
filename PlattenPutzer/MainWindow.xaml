@@ -21,26 +21,33 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button Name="btn1" Grid.Column="1" Background="Pink" 
+        <Button Name="btn1" Grid.Column="0" Background="Pink" 
             BorderBrush="Black" BorderThickness="2" 
             Click="DeleteTempFiles" ClickMode="Press" Margin="10">
             <TextBlock>Temporäre Dateien<LineBreak/>löschen</TextBlock>
         </Button>
-        <Label Name="labelTemp" Grid.Column="2" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
+        <Label Name="labelTemp" Grid.Column="1" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
         </Label>
-        <Button Name="btn2" Grid.Column="1" Grid.Row="1" Background="Pink" 
+        <Button Name="btn2" Grid.Column="0" Grid.Row="1" Background="Pink" 
             BorderBrush="Black" BorderThickness="2" 
             Click="DeleteSpotifyFiles" ClickMode="Press" Margin="10,10,10,10" IsEnabled="True">
             <TextBlock>Spotify-Müll<LineBreak/>löschen</TextBlock>
         </Button>
-        <Label Name="labelSpot" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
+        <Label Name="labelSpot" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
         </Label>
-        <Button Name="btn3" Grid.Column="1" Grid.Row="2" Background="Pink" 
+        <Button Name="btn3" Grid.Column="0" Grid.Row="2" Background="Pink" 
             BorderBrush="Black" BorderThickness="2" 
             Click="DeleteMiniaturansichten" ClickMode="Press" Margin="10,10,10,10" IsEnabled="True">
             <TextBlock>Miniaturansichten<LineBreak/>löschen</TextBlock>
         </Button>
-        <Label Name="labelMiniatur" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
+        <Label Name="labelMiniatur" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
+        </Label>
+        <Button Name="btn4" Grid.Column="0" Grid.Row="3" Background="Pink" 
+    BorderBrush="Black" BorderThickness="2" 
+    Click="DeleteLocalTemp" ClickMode="Press" Margin="10,10,10,10" IsEnabled="True">
+            <TextBlock>Lokale Temp-Dateien<LineBreak/>löschen</TextBlock>
+        </Button>
+        <Label Name="labelLocalTemp" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
         </Label>
     </Grid>
 </Window>

@@ -96,5 +96,10 @@ namespace PlattenPutzer
                 labelMiniatur.Content = "Keine Miniatur-Ansichten vorhanden.";
             }
         }
+
+        private void DeleteLocalTemp(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
