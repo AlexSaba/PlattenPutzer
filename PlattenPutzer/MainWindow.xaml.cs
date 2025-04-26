@@ -99,7 +99,32 @@ namespace PlattenPutzer
 
         private void DeleteLocalTemp(object sender, RoutedEventArgs e)
         {
+            string UmgVarLocalTemp = Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%\\Temp");
+            IEnumerable<String> VerzeichnisListe = Directory.EnumerateFileSystemEntries(UmgVarLocalTemp);
 
+            if (VerzeichnisListe.Any())
+            {
+                foreach (string dir in Directory.GetDirectories(UmgVarLocalTemp)) // Alle Unterordner durchgehen
+                {
+                    try
+                    {
+                        // Alle Dateien im Unterordner löschen
+                        foreach (string file in Directory.GetFiles(dir))
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fehler beim Löschen des Inhalts von {dir}: {ex.Message}");
+                    }
+                    labelLocalTemp.Content = "Lokale Temp-Dateien gelöscht!";
+                }
+            }
+            else
+            {
+                labelLocalTemp.Content = "Keine lokalen Temp-Dateien vorhanden.";
+            }
         }
     }
 }
