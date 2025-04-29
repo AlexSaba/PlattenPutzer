@@ -88,8 +88,8 @@ namespace PlattenPutzer
                     {
                         Console.WriteLine($"Fehler beim Löschen des Inhalts von {dir}: {ex.Message}");
                     }
-                    labelMiniatur.Content = "Miniatur-Ansichten gelöscht!";
                 }
+                labelMiniatur.Content = "Miniatur-Ansichten gelöscht!";
             }
             else
             {
@@ -99,31 +99,42 @@ namespace PlattenPutzer
 
         private void DeleteLocalTemp(object sender, RoutedEventArgs e)
         {
-            string UmgVarLocalTemp = Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%\\Temp");
-            IEnumerable<String> VerzeichnisListe = Directory.EnumerateFileSystemEntries(UmgVarLocalTemp);
+            string tempPath = Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%\\Temp");
 
-            if (VerzeichnisListe.Any())
+            try
             {
-                foreach (string dir in Directory.GetDirectories(UmgVarLocalTemp)) // Alle Unterordner durchgehen
+                // Dateien direkt im Temp-Verzeichnis löschen
+                foreach (string file in Directory.GetFiles(tempPath))
                 {
                     try
                     {
-                        // Alle Dateien im Unterordner löschen
-                        foreach (string file in Directory.GetFiles(dir))
-                        {
-                            File.Delete(file);
-                        }
+                        File.Delete(file);
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Fehler beim Löschen des Inhalts von {dir}: {ex.Message}");
+                        Console.WriteLine($"Fehler beim Löschen der Datei {file}: {ex.Message}");
                     }
-                    labelLocalTemp.Content = "Lokale Temp-Dateien gelöscht!";
                 }
+
+                // Unterordner mit Inhalt rekursiv löschen
+                foreach (string dir in Directory.GetDirectories(tempPath))
+                {
+                    try
+                    {
+                        Directory.Delete(dir, true); // true = rekursiv löschen
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fehler beim Löschen des Ordners {dir}: {ex.Message}");
+                    }
+                }
+
+                labelLocalTemp.Content = "Lokale Temp-Dateien und Ordner gelöscht!";
             }
-            else
+            catch (Exception ex)
             {
-                labelLocalTemp.Content = "Keine lokalen Temp-Dateien vorhanden.";
+                labelLocalTemp.Content = "Fehler beim Löschen.";
+                Console.WriteLine($"Gesamtfehler: {ex.Message}");
             }
         }
     }
