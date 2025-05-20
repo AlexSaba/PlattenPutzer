@@ -43,11 +43,18 @@
         <Label Name="labelMiniatur" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
         </Label>
         <Button Name="btn4" Grid.Column="0" Grid.Row="3" Background="Pink" 
-    BorderBrush="Black" BorderThickness="2" 
-    Click="DeleteLocalTemp" ClickMode="Press" Margin="10,10,10,10" IsEnabled="True">
+                BorderBrush="Black" BorderThickness="2" 
+                Click="DeleteLocalTemp" ClickMode="Press" Margin="10,10,10,10" IsEnabled="True">
             <TextBlock>Lokale Temp-Dateien<LineBreak/>löschen</TextBlock>
         </Button>
         <Label Name="labelLocalTemp" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
+        </Label>
+        <Button Name="btn5" Grid.Column="0" Grid.Row="4" Background="Pink"
+                BorderBrush="Black" BorderThickness="2" 
+                Click="DeleteMemoryDumps"  ClickMode="Press" Margin="10,10,10,10" IsEnabled="True">
+            <TextBlock>Memory Dumps<LineBreak/>löschen</TextBlock>
+        </Button>
+        <Label Name="labelMemoryDumps" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontStyle="Normal" Margin="20">
         </Label>
     </Grid>
 </Window>

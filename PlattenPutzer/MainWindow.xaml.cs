@@ -137,5 +137,10 @@ namespace PlattenPutzer
                 Console.WriteLine($"Gesamtfehler: {ex.Message}");
             }
         }
+
+        private void DeleteMemoryDumps(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
