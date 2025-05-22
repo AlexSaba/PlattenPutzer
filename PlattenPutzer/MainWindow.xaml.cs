@@ -38,8 +38,6 @@ namespace PlattenPutzer
 
         public void DeleteSpotifyFiles(object sender, RoutedEventArgs e)
         {
-            //Absoluter Pfad: C:\\Users\\%USERPROFILE%\\AppData\\Local\\Packages\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\\LocalCache\\Spotify\\Data
-
             string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string spotifyPath = System.IO.Path.Combine(localAppData, "Packages", "SpotifyAB.SpotifyMusic_zpdnekdrzrea0", "LocalCache", "Spotify", "Data");
 
@@ -140,7 +138,20 @@ namespace PlattenPutzer
 
         private void DeleteMemoryDumps(object sender, RoutedEventArgs e)
         {
+            string tempPath = Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%\\CrashDumps");
 
+                foreach (string file in Directory.GetFiles(tempPath))
+                {
+                    try
+                    {
+                        File.Delete(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fehler beim Löschen der Datei {file}: {ex.Message}");
+                    }
+                }
+            labelMemoryDumps.Content = "Memory Dumps gelöscht!";
         }
     }
 }
